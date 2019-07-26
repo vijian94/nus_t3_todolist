@@ -1,58 +1,72 @@
-import static org.junit.Assert.*;
+//import static org.junit.jupiter.api.Assertions.*;
 
+//import org.junit.jupiter.api.Test;
 import java.util.Collection;
 
 import org.junit.*;
 import org.junit.Test;
+import junit.framework.*;
 
 
-
-public class ToDoListTest {
-	private Task task1,task2,task3;
+public class ToDoListTest extends TestCase{
+	private Task task1;
+	private Task task2;
+	private Task task3;
 	private ToDoList todoList;
-	// Define Test Fixtures
-
 	
 	public ToDoListTest() {
 		super();
 	}
 	@Before
 	 public void setUp() throws Exception{
-		todoList = new ToDoList();
-		task1 = new Task("desc 1");
-		task2 = new Task("desc 2");
-		task3 = new Task("desc 3");
+		task1 = new Task ("desc 1");
+		task2 = new Task ("desc 2");
+		task3 = new Task ("desc 3");
 		
+		todoList = new ToDoList();
 	}
 	@After
 	 public void tearDown() throws Exception{
 		task1 = null;
 		task2 = null;
 		task3 = null;
+		
 		todoList = null;
-		// Uninitialise test Fixtures
 	}
 
 	@Test
 	public void testAddTask() {
+		assertNotNull(todoList);
 		todoList.addTask(task1);
-		assertFalse(todoList.isEmpty());
-	
-		
+		assertEquals(1, todoList.getAllTasks().size());
+		assertEquals(task1, todoList.getTask(task1.getDescription()));
 	}
 	@Test
 	public void testgetStatus() {
-		fail("Not implemented yet");
+		assertNotNull(todoList);
+		todoList.addTask(task1);
+		assertEquals(false, todoList.getStatus(task1.getDescription()));
+		todoList.completeTask(task1.getDescription());
+		assertEquals(true, todoList.getStatus(task1.getDescription()));
 	}
 	@Test
 	public void testRemoveTask() {
-		ToDoList todoList = new ToDoList();
+		assertNotNull(todoList);
 		todoList.addTask(task1);
-		todoList.removeTask(task1);
-		assertTrue(todoList.isEmpty());
+		todoList.addTask(task2);;
+		
+		todoList.removeTask(task1.getDescription());
+		assertNull(todoList.getTask(task1.getDescription()));	
 	}
 	@Test
 	public void testGetCompletedTasks() {
-		fail("Not implemented yet");
+		task1.setComplete(true);
+		task3.setComplete(true);
+		todoList.addTask(task1);
+		todoList.addTask(task2);
+		todoList.addTask(task3);
+		
+		Collection<Task> tasks = todoList.getCompletedTasks();
+		assertEquals(2, tasks.size());
 	}
 }
