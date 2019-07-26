@@ -13,12 +13,12 @@ private HashMap<String, Task> tasks = new HashMap<String, Task>();
 		// Add code here
 	}
 	public boolean getStatus(String description) {
-		return null;
+		return true;
 	}
 	public Task getTask(String description) {
 		return null;
 	}
-	public Task removeTask(String description) {
+	public Task removeTask(Task description) {
 		return tasks.remove(description);
 	}
 	public Collection<Task> getAllTasks() {

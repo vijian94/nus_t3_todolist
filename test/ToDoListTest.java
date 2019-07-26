@@ -47,9 +47,8 @@ public class ToDoListTest {
 	@Test
 	public void testRemoveTask() {
 		ToDoList todoList = new ToDoList();
-		Task assignment = new Task(s1);
-		todoList.addTask(assignment);
-		todoList.removeTask(s1);
+		todoList.addTask(task1);
+		todoList.removeTask(task1);
 		assertTrue(todoList.isEmpty());
 	}
 	@Test
