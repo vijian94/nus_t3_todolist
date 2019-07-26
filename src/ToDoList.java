@@ -29,7 +29,7 @@ public class ToDoList {
 		return tasks.get(description);
 	}
 
-	public Task removeTask(Task description) {
+	//public Task removeTask(Task description) {
 	public Task removeTask(String description) {
 		return tasks.remove(description);
 	}
@@ -55,5 +55,6 @@ public class ToDoList {
 			System.out.println("Description: " + task.getDescription());
 			
 	}
+		
 	}
 }

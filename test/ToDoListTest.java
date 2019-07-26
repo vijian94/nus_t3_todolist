@@ -24,12 +24,6 @@ public class ToDoListTest extends TestCase{
 		task3 = new Task ("desc 3");
 		
 		todoList = new ToDoList();
-		task1 = new Task("desc 1");
-		task2 = new Task("desc 2");
-		task3 = new Task("desc 3");
-		task4 =new Task("desc 4");
-		
-		
 	}
 	@After
 	 public void tearDown() throws Exception{
@@ -47,7 +41,7 @@ public class ToDoListTest extends TestCase{
 		assertEquals(1, todoList.getAllTasks().size());
 		assertEquals(task1, todoList.getTask(task1.getDescription()));
 	}
-	/*@Test
+	@Test
 	public void testgetStatus() {
 		assertNotNull(todoList);
 		todoList.addTask(task1);
@@ -65,17 +59,6 @@ public class ToDoListTest extends TestCase{
 		assertNull(todoList.getTask(task1.getDescription()));	
 	}
 	@Test
-	
-	public void testGetIncompleteTasks() {
-		task4.setComplete(false);
-		todoList.addTask(task4);
-		Collection<Task> tasks =todoList.getIncompleteTasks();
-		
-		
-	
-		
-		
-	};
 	public void testGetCompletedTasks() {
 		task1.setComplete(true);
 		task3.setComplete(true);
@@ -85,5 +68,13 @@ public class ToDoListTest extends TestCase{
 		
 		Collection<Task> tasks = todoList.getCompletedTasks();
 		assertEquals(2, tasks.size());
+	}
+	
+	@Test
+	public void testUpdatePriority() {
+		Task taskP1 = new Task ("desc 1", true, 1);
+		todoList.addTask(taskP1);
+		todoList.getTask("desc 1").setPriority(2);
+		assertEquals(2, todoList.getTask("desc 1").getPriority());
 	}
 }
